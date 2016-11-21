@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <button id="kkg">咔咔干</button>
+
+    <script src="test.js"></script>
+    <script>
+      var stateMachine = StateMachine.create({
+        initial: 'xxoo',
+
+        error: function (name) {
+          alert(name);
+        },
+
+        events: [
+          { name: 'play', from: 'menu', to: 'game' },
+          { name: 'quit', from: 'game', to: 'menu' }
+        ],
+
+        callbacks: {
+          'onenterxxoo': function (name, from, to) {
+            alert(name + ' : ' + from + ' : ' + to);
+          },
+          'onchangestate': function (name, from, to) {
+            alert('change: ' + name + ' : ' + from + ' : ' + to)
+          },
+          'onafterstartup': function (name) {
+            alert('触发' + name + '事件后');
+          }
+        }
+
+      });
+
+
+
+      // initial = cfg.initial instanceof Object ? cfg.initial : { state: initial }
+      // initial.event = 'startup'; //
+      // map['startup'] = { 'none': 'xxoo' }
+      // transitions['none']= [ 'startup' ]
+      // map['play'] = { 'menu': 'game' }
+      // map['quit'] = { 'game': 'menu' }
+
+      // fs.startup = bindEvent(startup, { none: 'xxoo' })
+      // fsm['startup'])();
+
+
+      // add 动作
+      // { name: , from, to }
+      /*
+        e.from 默认转为数组
+        map[name] = { from: to }
+        transitions[from] = [name]
+        transitions[to] = [];
+      */
+
+      // console.log(stateMachine);
+
+      //machine.change(10, 20);
+      // stateName, eventName
+
+      // 如果从后开始
+
+      // 默认currentState === on
+      // currentState[un
+      // .on
+    //  console.log(machine.change());
+
+      // new Stately(stateObject, initialStateName)
+      // 返回 stateMachine
+      // notify
+      /*
+        stateStore: getMachineState、setMachineState、getMachineEvents、
+        stateMachine: getMachineState、getMachineEvents、bind、unbind
+        transition
+
+        // stateObject initialStateName
+        // stateStore stateMachine
+
+        function Stately (stateObject, initialStateName) {
+          1、如果stateObject是函数，则调用，返回结果必须是个对象
+          2、遍历stateObject
+            (1)、拷贝stateObject property到局部变量stateStore
+            (2)、如果stateObject的state事件handle是一个字符串，那么新建个闭包，调用这个闭包，会到stateStore去拿这个值
+            (3)、如果handl是函数的话，那么将eventName赋予到stateMachine值为调用transition(stateName, eventName, stateMachine[eventName])
+            (4)
+        }
+
+        stateMachine[eventName] =
+
+
+
+      */
+
+    </script>
+  </body>
+</html>
