@@ -6,33 +6,35 @@
   <body>
     <button id="kkg">咔咔干</button>
 
-    <script src="test.js"></script>
+    <script src="kakagan.stateMachine.js"></script>
     <script>
-      var stateMachine = StateMachine.create({
+      var fsm = StateMachine.create({
         initial: 'xxoo',
-
-        error: function (name) {
-          alert(name);
-        },
-
         events: [
-          { name: 'play', from: 'menu', to: 'game' },
-          { name: 'quit', from: 'game', to: 'menu' }
+          { eventName: 'play', from: 'xxoo', to: 'ooxx' }
         ],
-
-        callbacks: {
-          'onenterxxoo': function (name, from, to) {
-            alert(name + ' : ' + from + ' : ' + to);
+        actionMap: {
+          onenterxxoo: function (eventName, from, to, a) {
+            console.log('进入到'+ to +'状态');
           },
-          'onchangestate': function (name, from, to) {
-            alert('change: ' + name + ' : ' + from + ' : ' + to)
+          onchangestate: function () {
+            console.log('改变当前状态');
           },
-          'onafterstartup': function (name) {
-            alert('触发' + name + '事件后');
+          onafterstartup: function (eventName) {
+            console.log('触发'+ eventName +'行为后');
+          },
+          onenterooxx: function (eventName, from, to) {
+            console.log('进入到' + to + '状态');
+          },
+          onafterplay: function (eventName) {
+            console.log('触发' + eventName + '行为后');
           }
         }
-
       });
+
+      console.log(fsm.currentState);
+      fsm.play();
+      console.log(fsm.currentState);
 
 
 
